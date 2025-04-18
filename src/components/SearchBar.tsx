@@ -7,6 +7,7 @@ interface SearchBarProps {
   onSearch: () => void;
   onFeelingCurious: () => void;
   isSearching: boolean;
+  buttonText?: string; // Added buttonText as an optional prop
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -14,7 +15,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setQuery,
   onSearch,
   onFeelingCurious,
-  isSearching
+  isSearching,
+  buttonText = "Search" // Default value if not provided
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -51,7 +53,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             className="google-button"
             disabled={isSearching || !query.trim()}
           >
-            Search
+            {buttonText}
           </button>
           <button 
             type="button"
