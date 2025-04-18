@@ -22,7 +22,7 @@ export function NestedMenuItem({ title, icon: Icon, children, defaultOpen = fals
           className="w-full justify-between group"
         >
           <div className="flex items-center gap-2">
-            {Icon && <Icon />}
+            {Icon && <Icon className="h-4 w-4" />}
             <span>{title}</span>
           </div>
           <ChevronDown className={cn(

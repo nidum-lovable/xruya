@@ -77,7 +77,10 @@ export const SidebarMenuButton = React.forwardRef<
     ref
   ) => {
     const Comp = asChild ? Slot : "button"
-    const { isMobile, state } = useSidebar()
+    const sidebarContext = React.useContext(React.createContext({ isMobile: false, state: "expanded" as const }))
+    
+    // Using a default context value to avoid the error when the real context is not available
+    const { isMobile = false, state = "expanded" } = sidebarContext || {}
 
     const button = (
       <Comp

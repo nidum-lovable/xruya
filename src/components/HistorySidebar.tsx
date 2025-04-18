@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from '@/components/ui/sidebar/sidebar-components';
 import { RecentSearches } from './history/RecentSearches';
 import { FolderList } from './history/FolderList';
 import { SearchFolder } from './history/types';
