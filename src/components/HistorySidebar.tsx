@@ -6,6 +6,7 @@ import { FolderList } from './history/FolderList';
 import { SearchFolder } from './history/types';
 import { PanelRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useSidebar } from '@/components/ui/sidebar';
 
 const demoFolders: SearchFolder[] = [
   {
@@ -14,24 +15,28 @@ const demoFolders: SearchFolder[] = [
     searches: ['Quantum Physics', 'String Theory'],
   },
   {
-    id: '2',
+    id: '2', 
     name: 'Technology',
     searches: ['AI Trends', 'Web3'],
   },
 ];
 
 const HistorySidebar = () => {
+  const { isMobile } = useSidebar();
+
   return (
-    <Sidebar>
+    <Sidebar className="transition-all duration-300 ease-in-out">
       <SidebarHeader>
         <div className="flex items-center justify-between px-4 py-2">
           <h2 className="text-lg font-semibold">Search History</h2>
-          <SidebarTrigger />
+          {!isMobile && <SidebarTrigger />}
         </div>
       </SidebarHeader>
       <SidebarContent>
-        <RecentSearches />
-        <FolderList folders={demoFolders} />
+        <div className="space-y-4 p-4">
+          <RecentSearches />
+          <FolderList folders={demoFolders} />
+        </div>
       </SidebarContent>
     </Sidebar>
   );
