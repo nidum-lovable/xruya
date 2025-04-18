@@ -7,7 +7,7 @@ import { SearchFolder } from './history/types';
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar/sidebar-menu';
 import { NestedMenuItem } from '@/components/ui/sidebar/nested-menu';
 import { Clock, Folder, Search, Star } from 'lucide-react';
-import { useSidebar } from '@/components/ui/sidebar';
+import { useSidebar } from '@/components/ui/sidebar/sidebar-context';
 
 const demoFolders: SearchFolder[] = [
   {
