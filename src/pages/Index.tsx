@@ -5,6 +5,9 @@ import SearchBar from '@/components/SearchBar';
 import SourceScanner from '@/components/SourceScanner';
 import SearchResults from '@/components/SearchResults';
 import Footer from '@/components/Footer';
+import UserMenu from '@/components/UserMenu';
+import HistorySidebar from '@/components/HistorySidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { useSearch } from '@/hooks/useSearch';
 
 const Index = () => {
@@ -20,31 +23,37 @@ const Index = () => {
   } = useSearch();
 
   return (
-    <div className="min-h-screen flex flex-col items-center relative px-4">
-      <div className={`w-full max-w-2xl mx-auto ${!result ? 'mt-32' : 'mt-8'} mb-20`}>
-        <Logo />
-        <SearchBar
-          query={query}
-          setQuery={setQuery}
-          onSearch={search}
-          onFeelingCurious={feelingCurious}
-          isSearching={isSearching}
-        />
-        <SourceScanner 
-          sources={sources} 
-          isComplete={searchComplete} 
-        />
-        {result && (
-          <SearchResults 
-            tldr={result.tldr}
-            answer={result.answer}
-            citations={result.citations}
-            isVisible={!!result}
-          />
-        )}
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full relative">
+        <HistorySidebar />
+        <div className="flex-1 flex flex-col items-center relative px-4">
+          <UserMenu />
+          <div className={`w-full max-w-2xl mx-auto ${!result ? 'mt-32' : 'mt-8'} mb-20`}>
+            <Logo />
+            <SearchBar
+              query={query}
+              setQuery={setQuery}
+              onSearch={search}
+              onFeelingCurious={feelingCurious}
+              isSearching={isSearching}
+            />
+            <SourceScanner 
+              sources={sources} 
+              isComplete={searchComplete} 
+            />
+            {result && (
+              <SearchResults 
+                tldr={result.tldr}
+                answer={result.answer}
+                citations={result.citations}
+                isVisible={!!result}
+              />
+            )}
+          </div>
+          <Footer />
+        </div>
       </div>
-      <Footer />
-    </div>
+    </SidebarProvider>
   );
 };
 

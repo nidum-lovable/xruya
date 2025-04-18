@@ -1,5 +1,8 @@
 
 import React from 'react';
+import { Share2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 interface Citation {
   id: number;
@@ -20,9 +23,18 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   citations,
   isVisible
 }) => {
+  const { toast } = useToast();
+  
   if (!isVisible) {
     return null;
   }
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({
+      description: "Link copied to clipboard!",
+    });
+  };
 
   // Process answer to include citation references
   const processedAnswer = answer.replace(/\[(\d+)\]/g, '[$1]');
@@ -31,7 +43,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     <div className={`w-full max-w-2xl mx-auto mt-8 ${isVisible ? 'animate-fade-in' : 'hidden'}`}>
       <div className="text-left">
         <div className="mb-4">
-          <h2 className="text-xl font-bold mb-2">TL;DR:</h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold mb-2">TL;DR:</h2>
+            <Button variant="ghost" size="sm" onClick={handleShare}>
+              <Share2 className="w-4 h-4 mr-2" />
+              Share
+            </Button>
+          </div>
           <p>{tldr}</p>
         </div>
         
