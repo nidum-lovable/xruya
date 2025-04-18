@@ -4,6 +4,8 @@ import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from '@/compon
 import { RecentSearches } from './history/RecentSearches';
 import { FolderList } from './history/FolderList';
 import { SearchFolder } from './history/types';
+import { PanelRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const demoFolders: SearchFolder[] = [
   {
