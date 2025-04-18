@@ -16,7 +16,7 @@ export const Sidebar = React.forwardRef<
     {
       side = "left",
       variant = "sidebar",
-      collapsible = "offcanvas",
+      collapsible = "none",
       className,
       children,
       ...props
@@ -24,7 +24,13 @@ export const Sidebar = React.forwardRef<
     ref
   ) => {
     // Try to use the real sidebar context, but handle the case where it's not available
-    let sidebarState = { isMobile: false, state: "expanded" as const, openMobile: false, setOpenMobile: () => {} };
+    let sidebarState: { isMobile: boolean; state: "expanded" | "collapsed"; openMobile: boolean; setOpenMobile: (open: boolean) => void } = { 
+      isMobile: false, 
+      state: "expanded", 
+      openMobile: false, 
+      setOpenMobile: () => {} 
+    };
+    
     try {
       sidebarState = useSidebar();
     } catch (e) {
