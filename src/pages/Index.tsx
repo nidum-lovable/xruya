@@ -23,7 +23,7 @@ const Index = () => {
   } = useSearch();
 
   return (
-    <SidebarProvider className="group/sidebar-wrapper flex min-h-svh w-full">
+    <SidebarProvider className="flex min-h-svh w-full">
       <HistorySidebar />
       <div className="flex-1 flex flex-col items-center relative px-4">
         <UserMenu />

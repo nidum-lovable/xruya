@@ -23,7 +23,16 @@ export const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    // Try to use the real sidebar context, but handle the case where it's not available
+    let sidebarState = { isMobile: false, state: "expanded" as const, openMobile: false, setOpenMobile: () => {} };
+    try {
+      sidebarState = useSidebar();
+    } catch (e) {
+      // Use default values if context is not available
+      console.warn("Sidebar used outside of SidebarProvider, using default values");
+    }
+    
+    const { isMobile, state, openMobile, setOpenMobile } = sidebarState;
 
     if (collapsible === "none") {
       return (
@@ -143,7 +152,14 @@ export const SidebarTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button">
 >(({ className, onClick, ...props }, ref) => {
-  const { toggleSidebar } = useSidebar()
+  // Try to use the real sidebar context, but handle the case where it's not available
+  let toggleSidebar = () => {};
+  try {
+    const sidebarContext = useSidebar();
+    toggleSidebar = sidebarContext.toggleSidebar;
+  } catch (e) {
+    console.warn("SidebarTrigger used outside of SidebarProvider");
+  }
 
   return (
     <button

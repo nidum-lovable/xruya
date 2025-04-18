@@ -54,6 +54,15 @@ export const SidebarMenuItem = React.forwardRef<
 ))
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
+// Create a default sidebar context to use when the real context is not available
+const DefaultSidebarContext = React.createContext<{
+  isMobile: boolean;
+  state: "expanded" | "collapsed";
+}>({
+  isMobile: false,
+  state: "expanded"
+});
+
 export const SidebarMenuButton = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -77,10 +86,16 @@ export const SidebarMenuButton = React.forwardRef<
     ref
   ) => {
     const Comp = asChild ? Slot : "button"
-    const sidebarContext = React.useContext(React.createContext({ isMobile: false, state: "expanded" as const }))
     
-    // Using a default context value to avoid the error when the real context is not available
-    const { isMobile = false, state = "expanded" } = sidebarContext || {}
+    // Try to use the real sidebar context, but fall back to the default one
+    let sidebarContext;
+    try {
+      sidebarContext = useSidebar();
+    } catch (e) {
+      sidebarContext = React.useContext(DefaultSidebarContext);
+    }
+    
+    const { isMobile, state } = sidebarContext;
 
     const button = (
       <Comp

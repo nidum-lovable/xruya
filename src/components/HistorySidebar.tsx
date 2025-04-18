@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from '@/components/ui/sidebar/sidebar-components';
+import { Sidebar, SidebarContent, SidebarHeader } from '@/components/ui/sidebar/sidebar-components';
 import { RecentSearches } from './history/RecentSearches';
 import { FolderList } from './history/FolderList';
 import { SearchFolder } from './history/types';
@@ -23,14 +23,19 @@ const demoFolders: SearchFolder[] = [
 ];
 
 const HistorySidebar = () => {
-  const { isMobile } = useSidebar();
+  let isMobile = false;
+  try {
+    const { isMobile: mobileState } = useSidebar();
+    isMobile = mobileState;
+  } catch (e) {
+    console.warn("HistorySidebar used outside of SidebarProvider");
+  }
 
   return (
     <Sidebar className="transition-all duration-300 ease-in-out">
       <SidebarHeader>
         <div className="flex items-center justify-between px-4 py-2">
           <h2 className="text-lg font-semibold">Search History</h2>
-          {!isMobile && <SidebarTrigger />}
         </div>
       </SidebarHeader>
       <SidebarContent>

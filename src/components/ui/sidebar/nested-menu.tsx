@@ -7,7 +7,7 @@ import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from './sidebar-menu'
 
 interface NestedMenuProps {
   title: string;
-  icon?: React.ComponentType;
+  icon?: React.ComponentType<{ className?: string }>;
   children: React.ReactNode;
   defaultOpen?: boolean;
 }
