@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sidebar, SidebarContent, SidebarHeader } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from '@/components/ui/sidebar';
 import { RecentSearches } from './history/RecentSearches';
 import { FolderList } from './history/FolderList';
 import { SearchFolder } from './history/types';
@@ -22,7 +22,10 @@ const HistorySidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader>
-        <h2 className="text-lg font-semibold px-4 py-2">Search History</h2>
+        <div className="flex items-center justify-between px-4 py-2">
+          <h2 className="text-lg font-semibold">Search History</h2>
+          <SidebarTrigger />
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <RecentSearches />

@@ -36,6 +36,7 @@ const Index = () => {
               onSearch={search}
               onFeelingCurious={feelingCurious}
               isSearching={isSearching}
+              buttonText={result ? "New Search" : "Search"}
             />
             <SourceScanner 
               sources={sources} 
