@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { SidebarProvider } from "@/components/ui/sidebar/sidebar-context";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 
 const DashboardLayout = () => {
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={true}>
       <div className="flex min-h-screen w-full">
         <DashboardSidebar />
         <main className="flex-1 bg-gray-50">
