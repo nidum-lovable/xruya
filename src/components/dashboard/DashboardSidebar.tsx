@@ -10,9 +10,10 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { useSidebar } from '@/components/ui/sidebar';
+import { useSidebar } from '@/components/ui/sidebar/sidebar-context';
 
 const DashboardSidebar = () => {
+  // Get the toggleSidebar function from context
   const { toggleSidebar } = useSidebar();
   
   const menuItems = [
@@ -24,13 +25,13 @@ const DashboardSidebar = () => {
     <Sidebar collapsible="icon">
       <SidebarHeader className="flex items-center justify-between px-4 py-6">
         <h2 className="text-lg font-semibold">Dashboard</h2>
-        <div 
+        <button 
           onClick={toggleSidebar} 
           className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-accent cursor-pointer"
         >
           <PanelLeftClose className="h-5 w-5" />
           <span className="sr-only">Toggle sidebar</span>
-        </div>
+        </button>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
