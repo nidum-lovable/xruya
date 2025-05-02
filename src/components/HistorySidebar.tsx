@@ -2,25 +2,10 @@
 import React from 'react';
 import { Sidebar, SidebarContent, SidebarHeader } from '@/components/ui/sidebar/sidebar-components';
 import { RecentSearches } from './history/RecentSearches';
-import { FolderList } from './history/FolderList';
-import { SearchFolder } from './history/types';
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar/sidebar-menu';
 import { NestedMenuItem } from '@/components/ui/sidebar/nested-menu';
-import { Clock, Folder, Search, Star } from 'lucide-react';
+import { Clock, Star, Search } from 'lucide-react';
 import { useSidebar } from '@/components/ui/sidebar/sidebar-context';
-
-const demoFolders: SearchFolder[] = [
-  {
-    id: '1',
-    name: 'Science',
-    searches: ['Quantum Physics', 'String Theory'],
-  },
-  {
-    id: '2', 
-    name: 'Technology',
-    searches: ['AI Trends', 'Web3'],
-  },
-];
 
 const HistorySidebar = () => {
   let isMobile = false;
@@ -63,10 +48,6 @@ const HistorySidebar = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
-            </NestedMenuItem>
-
-            <NestedMenuItem title="Folders" icon={Folder} defaultOpen>
-              <FolderList folders={demoFolders} />
             </NestedMenuItem>
           </SidebarMenu>
         </div>
