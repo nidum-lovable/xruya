@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { User, History } from 'lucide-react';
+import { User, History, PanelLeftClose } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -10,8 +10,12 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { Button } from '@/components/ui/button';
+import { useSidebar } from '@/components/ui/sidebar';
 
 const DashboardSidebar = () => {
+  const { toggleSidebar } = useSidebar();
+  
   const menuItems = [
     { icon: History, label: "Search History", path: "/dashboard/search-history" },
     { icon: User, label: "Profile", path: "/dashboard/profile" },
@@ -19,8 +23,17 @@ const DashboardSidebar = () => {
 
   return (
     <Sidebar>
-      <SidebarHeader className="px-4 py-6">
+      <SidebarHeader className="flex items-center justify-between px-4 py-6">
         <h2 className="text-lg font-semibold">Dashboard</h2>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={toggleSidebar} 
+          className="h-8 w-8"
+        >
+          <PanelLeftClose className="h-5 w-5" />
+          <span className="sr-only">Toggle sidebar</span>
+        </Button>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
