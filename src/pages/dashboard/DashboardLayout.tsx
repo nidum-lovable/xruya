@@ -6,7 +6,6 @@ import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/components/ui/use-toast';
 import { PanelLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const DashboardLayout = () => {
   const { isAuthenticated } = useAuth();

@@ -10,7 +10,6 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { Button } from '@/components/ui/button';
 import { useSidebar } from '@/components/ui/sidebar';
 
 const DashboardSidebar = () => {
@@ -25,15 +24,13 @@ const DashboardSidebar = () => {
     <Sidebar>
       <SidebarHeader className="flex items-center justify-between px-4 py-6">
         <h2 className="text-lg font-semibold">Dashboard</h2>
-        <Button 
-          variant="ghost" 
-          size="icon" 
+        <div 
           onClick={toggleSidebar} 
-          className="h-8 w-8"
+          className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-accent cursor-pointer"
         >
           <PanelLeftClose className="h-5 w-5" />
           <span className="sr-only">Toggle sidebar</span>
-        </Button>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
