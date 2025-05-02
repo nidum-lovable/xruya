@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/sidebar";
 
 const DashboardSidebar = () => {
-  // Get the toggleSidebar function from context
   const { toggleSidebar } = useSidebar();
   
   const menuItems = [
@@ -23,7 +22,7 @@ const DashboardSidebar = () => {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="flex items-center justify-between px-4 py-6">
+      <SidebarHeader className="flex items-center justify-between px-4 py-2">
         <h2 className="text-lg font-semibold">Dashboard</h2>
         <button 
           onClick={toggleSidebar} 
