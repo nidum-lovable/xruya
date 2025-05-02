@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { User, History, Home } from 'lucide-react';
+import { User, History } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -13,7 +13,6 @@ import {
 
 const DashboardSidebar = () => {
   const menuItems = [
-    { icon: Home, label: "Dashboard", path: "/dashboard" },
     { icon: History, label: "Search History", path: "/dashboard/search-history" },
     { icon: User, label: "Profile", path: "/dashboard/profile" },
   ];

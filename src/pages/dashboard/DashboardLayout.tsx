@@ -14,10 +14,10 @@ const DashboardLayout = () => {
     if (!isAuthenticated) {
       toast({
         title: "Authentication required",
-        description: "Please log in to access the dashboard.",
+        description: "Please log in to access this area.",
         variant: "destructive"
       });
-      navigate('/');
+      navigate('/login');
     }
   }, [isAuthenticated, navigate]);
 

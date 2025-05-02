@@ -3,12 +3,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
-import Dashboard from "./pages/dashboard/Dashboard";
 import Profile from "./pages/dashboard/Profile";
 import SearchHistory from "./pages/dashboard/SearchHistory";
 import Login from "./pages/Login";
@@ -28,7 +27,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
-              <Route index element={<Dashboard />} />
+              <Route index element={<Navigate to="/dashboard/search-history" replace />} />
               <Route path="profile" element={<Profile />} />
               <Route path="search-history" element={<SearchHistory />} />
             </Route>
