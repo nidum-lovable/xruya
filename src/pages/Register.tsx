@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { UserPlus } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/components/ui/use-toast';
+import Logo from '@/components/Logo';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -42,6 +43,7 @@ const Register = () => {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
+          <Logo />
           <h1 className="text-2xl font-bold text-center">Create Account</h1>
         </CardHeader>
         <CardContent>
