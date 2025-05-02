@@ -26,9 +26,9 @@ const DashboardLayout = () => {
   }
 
   return (
-    <SidebarProvider defaultOpen={true} className="flex min-h-screen w-full">
+    <SidebarProvider defaultCollapsed={false} className="flex h-screen w-full">
       <DashboardSidebar />
-      <main className="flex-1 bg-gray-50 p-6 transition-all duration-300">
+      <main className="flex-1 overflow-auto p-6 transition-all duration-300">
         <div className="max-w-5xl mx-auto">
           <Outlet />
         </div>
