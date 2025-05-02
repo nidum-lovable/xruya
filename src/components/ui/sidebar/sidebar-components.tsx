@@ -28,7 +28,7 @@ export const Sidebar = React.forwardRef<
       isMobile: false, 
       collapsed: false,
       mobileOpen: false,
-      setMobileOpen: () => {} 
+      setMobileOpen: (open: boolean) => {} 
     };
     
     try {
