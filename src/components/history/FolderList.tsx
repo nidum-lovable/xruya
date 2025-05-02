@@ -2,7 +2,6 @@
 import React from 'react';
 import { FolderItem } from './FolderItem';
 import { SearchFolder } from './types';
-import { SidebarGroup, SidebarGroupLabel } from '@/components/ui/sidebar';
 
 interface FolderListProps {
   folders: SearchFolder[];
@@ -10,11 +9,13 @@ interface FolderListProps {
 
 export const FolderList = ({ folders }: FolderListProps) => {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Folders</SidebarGroupLabel>
-      {folders.map((folder) => (
-        <FolderItem key={folder.id} folder={folder} />
-      ))}
-    </SidebarGroup>
+    <div className="space-y-2">
+      <h3 className="px-4 text-sm font-medium">Folders</h3>
+      <div>
+        {folders.map((folder) => (
+          <FolderItem key={folder.id} folder={folder} />
+        ))}
+      </div>
+    </div>
   );
 };

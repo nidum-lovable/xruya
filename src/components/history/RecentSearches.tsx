@@ -2,8 +2,6 @@
 import React from 'react';
 import { History } from 'lucide-react';
 import {
-  SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
@@ -11,8 +9,11 @@ import {
 
 export const RecentSearches = () => {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Recent Searches</SidebarGroupLabel>
+    <div className="space-y-2">
+      <h3 className="px-4 text-sm font-medium flex items-center">
+        <History className="w-4 h-4 mr-2" />
+        Recent Searches
+      </h3>
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton>
@@ -21,6 +22,6 @@ export const RecentSearches = () => {
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
-    </SidebarGroup>
+    </div>
   );
 };
