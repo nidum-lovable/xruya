@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { Share2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Share2, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
@@ -24,6 +24,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   isVisible
 }) => {
   const { toast } = useToast();
+  const [favorite, setFavorite] = useState(false);
   
   if (!isVisible) {
     return null;
@@ -36,6 +37,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     });
   };
 
+  const handleFavorite = () => {
+    setFavorite(!favorite);
+    toast({
+      description: favorite ? "Removed from favorites" : "Added to favorites",
+    });
+  };
+
   // Process answer to include citation references
   const processedAnswer = answer.replace(/\[(\d+)\]/g, '[$1]');
 
@@ -45,10 +53,23 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         <div className="mb-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold mb-2">TL;DR:</h2>
-            <Button variant="ghost" size="sm" onClick={handleShare}>
-              <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
+            <div className="flex gap-2">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={handleFavorite}
+                className={favorite ? "text-red-500 hover:text-red-500" : ""}
+              >
+                <Heart 
+                  className={`w-4 h-4 mr-2 ${favorite ? "fill-red-500" : ""}`} 
+                />
+                {favorite ? "Favorited" : "Favorite"}
+              </Button>
+              <Button variant="ghost" size="sm" onClick={handleShare}>
+                <Share2 className="w-4 h-4 mr-2" />
+                Share
+              </Button>
+            </div>
           </div>
           <p>{tldr}</p>
         </div>
