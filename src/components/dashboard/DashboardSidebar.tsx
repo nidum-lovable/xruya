@@ -36,13 +36,15 @@ const DashboardSidebar = () => {
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.path}>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton 
+                asChild
+                tooltip={item.label}
+              >
                 <NavLink 
                   to={item.path}
                   className={({ isActive }) => 
                     isActive ? "text-primary" : "text-gray-600 hover:text-primary"
                   }
-                  tooltip={item.label}
                 >
                   <item.icon className="w-5 h-5" />
                   <span>{item.label}</span>
