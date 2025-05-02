@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 
 const UserMenu = () => {
-  const { isAuthenticated, login, logout, user } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
 
   return (
     <div className="absolute top-4 right-4">
@@ -32,10 +32,7 @@ const UserMenu = () => {
           {isAuthenticated ? (
             <>
               <DropdownMenuItem asChild>
-                <Link to="/dashboard/profile">Profile</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/dashboard/account">Account</Link>
+                <Link to="/dashboard/profile">My Profile</Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={logout}>
                 <LogOut className="w-4 h-4 mr-2" />
@@ -43,10 +40,20 @@ const UserMenu = () => {
               </DropdownMenuItem>
             </>
           ) : (
-            <DropdownMenuItem onClick={login}>
-              <LogIn className="w-4 h-4 mr-2" />
-              Login
-            </DropdownMenuItem>
+            <>
+              <DropdownMenuItem asChild>
+                <Link to="/login">
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Login
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/register">
+                  <User className="w-4 h-4 mr-2" />
+                  Register
+                </Link>
+              </DropdownMenuItem>
+            </>
           )}
         </DropdownMenuContent>
       </DropdownMenu>

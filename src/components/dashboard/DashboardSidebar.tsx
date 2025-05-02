@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { User, Settings, CreditCard } from 'lucide-react';
+import { User } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -14,8 +14,6 @@ import {
 const DashboardSidebar = () => {
   const menuItems = [
     { icon: User, label: "Profile", path: "/dashboard/profile" },
-    { icon: Settings, label: "Account", path: "/dashboard/account" },
-    { icon: CreditCard, label: "Plans & Billing", path: "/dashboard/subscriptions" },
   ];
 
   return (

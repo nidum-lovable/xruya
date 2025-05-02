@@ -12,7 +12,7 @@ interface User {
 interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
-  login: () => void;
+  login: (email: string) => void;
   logout: () => void;
 }
 
@@ -24,19 +24,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const navigate = useNavigate();
 
   // Simulate login - in a real app, this would call an API
-  const login = useCallback(() => {
+  const login = useCallback((email: string) => {
     setIsAuthenticated(true);
     setUser({
       id: '1',
-      name: 'Demo User',
-      email: 'user@example.com',
+      name: email.split('@')[0], // Simple way to extract a name from email
+      email: email,
     });
     toast({
       title: "Logged in successfully",
-      description: "Welcome back, Demo User!",
+      description: `Welcome back, ${email.split('@')[0]}!`,
     });
-    navigate('/dashboard/profile');
-  }, [navigate]);
+  }, []);
 
   // Simulate logout - in a real app, this would call an API
   const logout = useCallback(() => {
@@ -46,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       title: "Logged out successfully",
       description: "You have been logged out.",
     });
-    navigate('/');
+    navigate('/login');
   }, [navigate]);
 
   return (
