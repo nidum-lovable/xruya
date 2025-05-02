@@ -5,7 +5,6 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/components/ui/use-toast';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 
 const DashboardLayout = () => {
   const { isAuthenticated } = useAuth();
@@ -31,13 +30,7 @@ const DashboardLayout = () => {
       <div className="flex min-h-screen w-full">
         <DashboardSidebar />
         <main className="flex-1 bg-gray-50">
-          <div className="flex items-center p-4 border-b">
-            <SidebarTrigger className="mr-2" />
-            <h1 className="text-xl font-semibold">Dashboard</h1>
-          </div>
-          <div className="p-4">
-            <Outlet />
-          </div>
+          <Outlet />
         </main>
       </div>
     </SidebarProvider>
