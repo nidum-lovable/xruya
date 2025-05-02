@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
@@ -16,7 +17,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(email); // In a real app, you'd pass email and password
-    navigate('/dashboard/search-history');
+    navigate('/dashboard'); // Redirect to main dashboard instead of specific page
   };
 
   return (

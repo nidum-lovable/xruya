@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ const Register = () => {
       title: "Success",
       description: "Registration successful! You are now logged in.",
     });
-    navigate('/dashboard/search-history');
+    navigate('/dashboard'); // Redirect to main dashboard instead of specific page
   };
 
   return (

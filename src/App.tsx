@@ -8,6 +8,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Profile from "./pages/dashboard/Profile";
 import SearchHistory from "./pages/dashboard/SearchHistory";
 import Login from "./pages/Login";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<Dashboard />} />
               <Route path="profile" element={<Profile />} />
               <Route path="search-history" element={<SearchHistory />} />
             </Route>
