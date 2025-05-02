@@ -2,6 +2,9 @@
 import * as React from "react"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
+// Import SidebarProvider from the context file
+import { SidebarProvider, SidebarContext, useSidebar, useSidebarSafe } from "./sidebar/sidebar-context"
+
 // Re-export everything from our sub-modules
 export {
   // Base sidebar components
@@ -43,7 +46,7 @@ export {
   SidebarContext,
   useSidebar,
   useSidebarSafe
-} from "./sidebar/sidebar-context"
+}
 
 // Wrap everything in a TooltipProvider for convenience
 export function EnhancedSidebarProvider(props: React.ComponentProps<typeof SidebarProvider>) {
