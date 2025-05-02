@@ -21,6 +21,12 @@ export {
 } from "./sidebar/sidebar-menu"
 
 export {
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+} from "./sidebar/sidebar-group"
+
+export {
   SidebarProvider,
   SidebarContext,
   useSidebar,

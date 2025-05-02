@@ -24,11 +24,11 @@ export const Sidebar = React.forwardRef<
     ref
   ) => {
     // Try to use the real sidebar context, but handle the case where it's not available
-    let sidebarState: { isMobile: boolean; state: "expanded" | "collapsed"; openMobile: boolean; setOpenMobile: (open: boolean) => void } = { 
+    let sidebarState = { 
       isMobile: false, 
-      state: "expanded", 
-      openMobile: false, 
-      setOpenMobile: () => {} 
+      collapsed: false,
+      mobileOpen: false,
+      setMobileOpen: () => {} 
     };
     
     try {
@@ -38,7 +38,8 @@ export const Sidebar = React.forwardRef<
       console.warn("Sidebar used outside of SidebarProvider, using default values");
     }
     
-    const { isMobile, state, openMobile, setOpenMobile } = sidebarState;
+    const { isMobile, collapsed, mobileOpen, setMobileOpen } = sidebarState;
+    const state = collapsed ? "collapsed" : "expanded";
 
     if (collapsible === "none") {
       return (
@@ -57,7 +58,7 @@ export const Sidebar = React.forwardRef<
 
     if (isMobile) {
       return (
-        <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
