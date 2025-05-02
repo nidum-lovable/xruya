@@ -2,9 +2,6 @@
 import * as React from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
 
-const SIDEBAR_COOKIE_NAME = "sidebar:state"
-const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-
 type SidebarContext = {
   state: "expanded" | "collapsed"
   open: boolean
@@ -41,10 +38,12 @@ export function SidebarProvider({
   const [open, setOpen] = React.useState(defaultOpen)
   
   const toggleSidebar = React.useCallback(() => {
-    return isMobile
-      ? setOpenMobile((open) => !open)
-      : setOpen((open) => !open)
-  }, [isMobile])
+    if (isMobile) {
+      setOpenMobile(prev => !prev);
+    } else {
+      setOpen(prev => !prev);
+    }
+  }, [isMobile]);
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

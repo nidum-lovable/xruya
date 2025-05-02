@@ -5,7 +5,6 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/components/ui/use-toast';
-import { PanelLeft } from 'lucide-react';
 
 const DashboardLayout = () => {
   const { isAuthenticated } = useAuth();
@@ -27,15 +26,13 @@ const DashboardLayout = () => {
   }
 
   return (
-    <SidebarProvider defaultOpen={true}>
-      <div className="flex min-h-screen w-full">
-        <DashboardSidebar />
-        <main className="flex-1 bg-gray-50 p-6 transition-all duration-300">
-          <div className="max-w-5xl mx-auto">
-            <Outlet />
-          </div>
-        </main>
-      </div>
+    <SidebarProvider defaultOpen={true} className="flex min-h-screen w-full">
+      <DashboardSidebar />
+      <main className="flex-1 bg-gray-50 p-6 transition-all duration-300">
+        <div className="max-w-5xl mx-auto">
+          <Outlet />
+        </div>
+      </main>
     </SidebarProvider>
   );
 };
