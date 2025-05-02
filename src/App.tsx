@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import Profile from "./pages/dashboard/Profile";
+import SearchHistory from "./pages/dashboard/SearchHistory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route path="profile" element={<Profile />} />
+              <Route path="search-history" element={<SearchHistory />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

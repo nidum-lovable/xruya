@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -35,7 +34,7 @@ const Register = () => {
       title: "Success",
       description: "Registration successful! You are now logged in.",
     });
-    navigate('/dashboard/profile');
+    navigate('/dashboard/search-history');
   };
 
   return (

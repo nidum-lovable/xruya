@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
@@ -17,10 +16,11 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(email); // In a real app, you'd pass email and password
-    navigate('/dashboard/profile');
+    navigate('/dashboard/search-history');
   };
 
   return (
+    
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
