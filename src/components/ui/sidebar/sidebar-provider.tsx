@@ -10,16 +10,16 @@ const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 export const SidebarProvider = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
-    defaultCollapsed?: boolean
-    collapsed?: boolean
-    onCollapsedChange?: (collapsed: boolean) => void
+    defaultOpen?: boolean
+    open?: boolean
+    onOpenChange?: (open: boolean) => void
   }
 >(
   (
     {
-      defaultCollapsed = false,
-      collapsed: collapsedProp,
-      onCollapsedChange: setCollapsedProp,
+      defaultOpen = true,
+      open: openProp,
+      onOpenChange: setOpenProp,
       className,
       style,
       children,
@@ -28,28 +28,28 @@ export const SidebarProvider = React.forwardRef<
     ref
   ) => {
     const isMobile = useIsMobile()
-    const [mobileOpen, setMobileOpen] = React.useState(false)
-    const [_collapsed, _setCollapsed] = React.useState(defaultCollapsed)
-    const collapsed = collapsedProp ?? _collapsed
+    const [openMobile, setOpenMobile] = React.useState(false)
+    const [_open, _setOpen] = React.useState(defaultOpen)
+    const open = openProp ?? _open
     
-    const setCollapsed = React.useCallback(
+    const setOpen = React.useCallback(
       (value: boolean | ((value: boolean) => boolean)) => {
-        const collapsedState = typeof value === "function" ? value(collapsed) : value
-        if (setCollapsedProp) {
-          setCollapsedProp(collapsedState)
+        const openState = typeof value === "function" ? value(open) : value
+        if (setOpenProp) {
+          setOpenProp(openState)
         } else {
-          _setCollapsed(collapsedState)
+          _setOpen(openState)
         }
-        document.cookie = `sidebar:state=${collapsedState ? 'collapsed' : 'expanded'}; path=/; max-age=${60 * 60 * 24 * 7}`
+        document.cookie = `sidebar:state=${openState}; path=/; max-age=${60 * 60 * 24 * 7}`
       },
-      [setCollapsedProp, collapsed]
+      [setOpenProp, open]
     )
 
     const toggleSidebar = React.useCallback(() => {
       return isMobile
-        ? setMobileOpen((open) => !open)
-        : setCollapsed((collapsed) => !collapsed)
-    }, [isMobile, setCollapsed, setMobileOpen])
+        ? setOpenMobile((open) => !open)
+        : setOpen((open) => !open)
+    }, [isMobile, setOpen, setOpenMobile])
 
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
@@ -66,16 +66,20 @@ export const SidebarProvider = React.forwardRef<
       return () => window.removeEventListener("keydown", handleKeyDown)
     }, [toggleSidebar])
 
+    // Explicitly cast to the correct type
+    const state: "expanded" | "collapsed" = open ? "expanded" : "collapsed"
+
     const contextValue = React.useMemo(
       () => ({
-        collapsed,
-        setCollapsed,
-        mobileOpen,
-        setMobileOpen,
+        state,
+        open,
+        setOpen,
         isMobile,
+        openMobile,
+        setOpenMobile,
         toggleSidebar,
       }),
-      [collapsed, setCollapsed, isMobile, mobileOpen, setMobileOpen, toggleSidebar]
+      [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
     )
 
     return (
@@ -84,12 +88,15 @@ export const SidebarProvider = React.forwardRef<
           <div
             style={
               {
-                "--sidebar-expanded-width": "16rem",
-                "--sidebar-collapsed-width": "4rem",
+                "--sidebar-width": "16rem",
+                "--sidebar-width-icon": "3rem",
                 ...style,
               } as React.CSSProperties
             }
-            className={cn("flex h-screen w-full", className)}
+            className={cn(
+              "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
+              className
+            )}
             ref={ref}
             {...props}
           >

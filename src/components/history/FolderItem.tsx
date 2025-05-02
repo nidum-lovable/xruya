@@ -2,7 +2,7 @@
 import React from 'react';
 import { FolderOpen, ChevronDown } from 'lucide-react';
 import { SearchFolder } from './types';
-import { SidebarMenuItem, SidebarMenuButton, SidebarMenu } from '@/components/ui/sidebar';
+import { SidebarMenuItem, SidebarMenuButton, SidebarMenuSub } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 
 interface FolderItemProps {
@@ -18,7 +18,7 @@ export const FolderItem = ({ folder }: FolderItemProps) => {
         <ChevronDown className="w-4 h-4" />
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <SidebarMenu>
+        <SidebarMenuSub>
           {folder.searches.map((search, index) => (
             <SidebarMenuItem key={index}>
               <SidebarMenuButton>
@@ -26,7 +26,7 @@ export const FolderItem = ({ folder }: FolderItemProps) => {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
-        </SidebarMenu>
+        </SidebarMenuSub>
       </CollapsibleContent>
     </Collapsible>
   );

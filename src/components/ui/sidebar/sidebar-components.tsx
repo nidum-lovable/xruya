@@ -24,16 +24,11 @@ export const Sidebar = React.forwardRef<
     ref
   ) => {
     // Try to use the real sidebar context, but handle the case where it's not available
-    let sidebarState: { 
-      isMobile: boolean; 
-      collapsed: boolean;
-      mobileOpen: boolean;
-      setMobileOpen: (open: boolean) => void;
-    } = { 
+    let sidebarState: { isMobile: boolean; state: "expanded" | "collapsed"; openMobile: boolean; setOpenMobile: (open: boolean) => void } = { 
       isMobile: false, 
-      collapsed: false,
-      mobileOpen: false, 
-      setMobileOpen: () => {} 
+      state: "expanded", 
+      openMobile: false, 
+      setOpenMobile: () => {} 
     };
     
     try {
@@ -43,7 +38,7 @@ export const Sidebar = React.forwardRef<
       console.warn("Sidebar used outside of SidebarProvider, using default values");
     }
     
-    const { isMobile, collapsed, mobileOpen, setMobileOpen } = sidebarState;
+    const { isMobile, state, openMobile, setOpenMobile } = sidebarState;
 
     if (collapsible === "none") {
       return (
@@ -62,7 +57,7 @@ export const Sidebar = React.forwardRef<
 
     if (isMobile) {
       return (
-        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+        <Sheet open={openMobile} onOpenChange={setOpenMobile}>
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
@@ -80,7 +75,7 @@ export const Sidebar = React.forwardRef<
       <div
         ref={ref}
         className="group peer hidden md:block text-sidebar-foreground"
-        data-state={collapsed ? "collapsed" : "expanded"}
+        data-state={state}
         data-collapsible={collapsible}
         data-variant={variant}
         data-side={side}
@@ -88,7 +83,7 @@ export const Sidebar = React.forwardRef<
         <div
           className={cn(
             "relative h-svh transition-all duration-300 ease-in-out",
-            collapsed ? "w-[--sidebar-width-icon]" : "w-[--sidebar-width]",
+            state === "expanded" ? "w-[--sidebar-width]" : "w-[--sidebar-width-icon]",
             className
           )}
         >
@@ -96,7 +91,7 @@ export const Sidebar = React.forwardRef<
             data-sidebar="sidebar"
             className="fixed inset-y-0 z-10 flex h-svh flex-col overflow-y-auto bg-sidebar border-r transition-all duration-300 ease-in-out"
             style={{
-              width: collapsed ? "var(--sidebar-width-icon)" : "var(--sidebar-width)"
+              width: state === "expanded" ? "var(--sidebar-width)" : "var(--sidebar-width-icon)"
             }}
           >
             {children}

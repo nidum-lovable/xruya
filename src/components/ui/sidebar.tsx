@@ -1,7 +1,6 @@
 
 import * as React from "react"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { SidebarProvider as BaseSidebarProvider } from "./sidebar/sidebar-context"
 
 // Re-export everything from our sub-modules
 export {
@@ -29,10 +28,10 @@ export {
 } from "./sidebar/sidebar-context"
 
 // Convenience wrapper with TooltipProvider
-export function EnhancedSidebarProvider(props: React.ComponentProps<typeof BaseSidebarProvider>) {
+export function EnhancedSidebarProvider(props: React.ComponentProps<typeof SidebarProvider>) {
   return (
     <TooltipProvider delayDuration={0}>
-      <BaseSidebarProvider {...props} />
+      <SidebarProvider {...props} />
     </TooltipProvider>
   )
 }
