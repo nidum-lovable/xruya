@@ -9,6 +9,7 @@ import UserMenu from '@/components/UserMenu';
 import HistorySidebar from '@/components/HistorySidebar';
 import { SidebarProvider } from '@/components/ui/sidebar/sidebar-context';
 import { useSearch } from '@/hooks/useSearch';
+import WelcomePage from '@/components/WelcomePage';
 
 const Index = () => {
   const {
@@ -37,6 +38,9 @@ const Index = () => {
             isSearching={isSearching}
             buttonText={result ? "New Search" : "Search"}
           />
+          {!result && !isSearching && (
+            <WelcomePage />
+          )}
           <SourceScanner 
             sources={sources} 
             isComplete={searchComplete} 
