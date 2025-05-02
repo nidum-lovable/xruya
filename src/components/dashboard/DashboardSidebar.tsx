@@ -9,8 +9,8 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  useSidebar
 } from "@/components/ui/sidebar";
-import { useSidebar } from '@/components/ui/sidebar/sidebar-context';
 
 const DashboardSidebar = () => {
   // Get the toggleSidebar function from context

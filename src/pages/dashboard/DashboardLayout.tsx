@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { SidebarProvider } from "@/components/ui/sidebar/sidebar-context";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/components/ui/use-toast';
