@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, Search, Layout, Image } from 'lucide-react';
-
 const WelcomePage = () => {
-  return (
-    <div className="animate-fade-in mt-12 space-y-6">
-      <h2 className="text-2xl font-medium text-center mb-8">Welcome to XRUYA</h2>
+  return <div className="animate-fade-in mt-12 space-y-6">
+      <h2 className="text-2xl font-medium text-center mb-8">Welcome to the future of Search</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="hover:shadow-md transition-shadow">
@@ -63,8 +60,6 @@ const WelcomePage = () => {
           Try searching for a topic or click "I'm Feeling Curious" to discover something new
         </p>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default WelcomePage;
